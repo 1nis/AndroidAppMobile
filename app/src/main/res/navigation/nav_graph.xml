@@ -18,9 +18,17 @@
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="com.example.notesapp.fragments.AddNoteFragment"
-        android:label="AddNoteFragment" />
+        android:label="AddNoteFragment" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
         android:name="com.example.notesapp.fragments.EditNoteFragment"
-        android:label="EditNoteFragment" />
+        android:label="EditNoteFragment" >
+        <action
+            android:id="@+id/action_editNoteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
