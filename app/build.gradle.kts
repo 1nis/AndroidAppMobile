@@ -15,7 +15,8 @@ android {
     defaultConfig {
         applicationId = "com.example.notesapp"
         minSdk = 28
-        targetSdk = 34
+        //noinspection EditedTargetSdkVersion
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -52,10 +53,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.lifecycle.viewmodel.android)
+    implementation("androidx.core:core-ktx:1.15.0") // Compatible avec SDK 35
     // Room
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:$roomVersion")
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
@@ -69,6 +71,6 @@ dependencies {
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     // Annotation processor
-    ksp("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
+    ksp("androidx.lifecycle:lifecycle-compiler:2.8.7")
 }
 
