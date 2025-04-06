@@ -12,17 +12,17 @@ import com.example.notesapp.model.Note
 @Dao
 interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(note:Note)
+    suspend fun insertNote(note: Note)
 
     @Update
-    suspend fun updateNote(note:Note)
+    suspend fun updateNote(note: Note)
 
     @Delete
     suspend fun deleteNote(note: Note)
 
-    @Query("SELECT * FROM NOTES ORDER BY id DESC")
+    @Query("SELECT * FROM notes ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM NOTES where noteTitle LIKE :query or noteDesc LIKE :query")
+    @Query("SELECT * FROM notes where noteTitle LIKE :query or noteDesc LIKE :query")
     fun searchNote(query: String?): LiveData<List<Note>>
 }

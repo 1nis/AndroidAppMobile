@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
 
@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.notesapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.notesapp"
@@ -59,12 +59,11 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation("androidx.room:room-ktx:$roomVersion")
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     // Life Cycle Arch
-    val lifecycleVersion = "2.6.2"
+    val lifecycleVersion = "2.8.7"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     // LiveData
@@ -72,3 +71,4 @@ dependencies {
     // Annotation processor
     ksp("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
 }
+

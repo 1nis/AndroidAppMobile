@@ -22,18 +22,16 @@ import com.example.notesapp.model.Note
 import com.example.notesapp.viewmodel.NoteViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener, MenuProvider {
-    // TODO: Rename and change types of parameters
     private var homeBinding: FragmentHomeBinding? = null
     private val binding get() = homeBinding !!
 
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var noteAdapter: NoteAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,11 +53,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     private fun updateUI(note: List<Note>?){
         if (note != null){
             if (note.isEmpty()){
-                binding.emptyNotesImage.visibility = View.GONE
-                binding.homeRecyclerView.visibility = View.VISIBLE
-            } else {
                 binding.emptyNotesImage.visibility = View.VISIBLE
                 binding.homeRecyclerView.visibility = View.GONE
+            } else {
+                binding.emptyNotesImage.visibility = View.GONE
+                binding.homeRecyclerView.visibility = View.VISIBLE
             }
         }
     }
@@ -77,14 +75,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
                 noteAdapter.differ.submitList(note)
                 updateUI(note)
             }
-
         }
     }
 
     private fun searchNote(query: String?) {
-        val searchQuery = "%$query"
+        val searchQuery = "%$query%"
 
-        noteViewModel.searchNotes(searchQuery).observe(this) { list ->
+        noteViewModel.searchNotes(searchQuery).observe(viewLifecycleOwner) { list ->
             noteAdapter.differ.submitList(list)
         }
     }
@@ -115,6 +112,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        // Implémentation de la sélection des éléments de menu
+        return when (menuItem.itemId) {
+            R.id.searchMenu -> {
+                // Action pour l'élément de menu
+                true
+            }
+            else -> false
+        }
     }
 }
